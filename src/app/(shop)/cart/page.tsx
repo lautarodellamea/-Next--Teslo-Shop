@@ -1,6 +1,5 @@
-// snippet para crear una page: "prc"
 
-export default function Cart() {
+export default function CartPage() {
   return (
     <div>
       <h1>Cart Page</h1>

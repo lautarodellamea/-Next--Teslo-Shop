@@ -1,5 +1,3 @@
-// snippet para crear una page: "prc"
-
 export default function ProductPage() {
   return (
     <div>

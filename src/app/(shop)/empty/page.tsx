@@ -1,4 +1,3 @@
-// snippet para crear una page: "prc"
 
 export default function EmptyPage() {
   return (

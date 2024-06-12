@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+// crearemos un estado para la ui
+// creamos la interface para el estado
 interface State {
   isSideMenuOpen: boolean
   openSideMenu: () => void
