@@ -3,8 +3,7 @@ import { inter } from '@/config/fonts'
 
 import './globals.css'
 
-import { TopMenu } from '@/components/ui/top-menu/TopMenu'
-import { Sidebar } from '@/components'
+
 
 export const metadata: Metadata = {
   title: 'Teslo | Shop',
@@ -20,8 +19,6 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         {/* <body className={`${inter.className} font-bold cualquie-otra-clase`}> */}
-        <TopMenu />
-        <Sidebar />
         <div className='px-0 sm:px-10'>{children}</div>
       </body>
     </html>
