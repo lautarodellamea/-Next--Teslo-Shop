@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:15.3
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    # es para conectar al disco duro lo que cree y no se destruya
+    # crea un volumen donde esta corriendo mi docker-compose ./postgres y lo conecta con el directorio /var/lib/postgresql/data
+    # que esta dentro del contenedor y es donde postgres guarda la data
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
