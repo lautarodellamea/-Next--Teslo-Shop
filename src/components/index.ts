@@ -1,7 +1,9 @@
+
 export * from './products/product-grid/ProductGrid'
 export * from './products/product-grid/ProductGridItem'
 
-export * from './footer/Footer'
+export * from './ui/footer/Footer'
+export * from "./ui/pagination/Pagination"
 
 export * from './product/slideshow/ProductSlideshow'
 export * from './product/slideshow/ProductMobileSlideshow'
