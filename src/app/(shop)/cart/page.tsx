@@ -1,15 +1,9 @@
 import Link from "next/link";
+import { Title } from "@/components";
+import { ProductsInCart } from "./ui/ProductsInCart";
+import { OrderSummary } from "./ui/OrderSummary";
 
-import { QuantitySelector, Title } from "@/components";
-import { initialData } from "@/seed/seed";
-import Image from "next/image";
-import { redirect } from "next/navigation";
 
-const productsInCart = [
-  initialData.products[0],
-  // initialData.products[1],
-  // initialData.products[2],
-]
 
 
 export default function CartPage() {
@@ -18,9 +12,6 @@ export default function CartPage() {
 
   // si no hay nada en el carrito 
   // redirect("/empty");
-
-
-
 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
@@ -38,44 +29,16 @@ export default function CartPage() {
 
 
             {/* items */}
-            {
-              productsInCart.map((product) => (
-                <div key={product.slug} className="flex mb-5">
-                  <Image
-                    style={{ width: "100px", height: "100px", objectFit: 'cover' }}
-                    src={`/products/${product.images[0]}`} alt={product.title} width={100} height={100} className="mr-5 rounded" />
-                  <div>
-                    <p>{product.title}</p>
-                    <p>${product.price}</p>
-                    <QuantitySelector quantity={3} />
+            {/* aca si no hago esta condicion de loading al comienzo del componente ProductsInCart me da un error porque lo que se genera del lado del servidor no es lo mismo que se genera del lado del cliente */}
+            <ProductsInCart />
 
-                    <button className="underline mt-3">Remover</button>
-                  </div>
-                </div>
-              ))
-            }
           </div>
 
           {/* Checkout - Resumen del pedido */}
 
           <div className="bg-white  rounded-xl shadow-xl p-7 h-fit ">
             <h2>Resumen de orden</h2>
-            <div className="grid grid-cols-2">
-
-              <span>No. Productos</span>
-              <span className="text-right">3 articulos</span>
-
-
-              <span>Subtotal</span>
-              <span className="text-right">$ 100</span>
-
-              <span>Impuestos (15%)</span>
-              <span className="text-right">$ 100</span>
-
-              <span className="mt-5 text-2xl">Total</span>
-              <span className="mt-5 text-2xl text-right">$ 100</span>
-
-            </div>
+            <OrderSummary />
 
             <div className="mt-5 mb-2 w-full">
               <Link className="flex btn-primary justify-center" href="/checkout/address">Checkout</Link>

@@ -1,12 +1,23 @@
 'use client'
 
 import Link from 'next/link'
-import { useUIStore } from '@/store'
+import { useCartStore, useUIStore } from '@/store'
 import { titleFont } from '@/config/fonts'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
+import { useEffect, useState } from 'react'
 
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu)
+  // aca ejecuto la funcion getTotalItems() del store
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems())
+
+  // usaremos esto para evitar usar el skipHydration en el store
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true)
+  }, [])
+
 
   return (
     <nav className='flex px-5 justify-between items-center w-full'>
@@ -50,11 +61,16 @@ export const TopMenu = () => {
           <IoSearchOutline className='w-5 h5' />
         </Link>
 
-        <Link href='/cart' className='mx-2'>
+        <Link href={(totalItemsInCart === 0) && isLoading ? '/empty' : '/cart'} className='mx-2'>
           <div className='relative'>
-            <span className='absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white'>
-              3
-            </span>
+            {
+              (isLoading && totalItemsInCart > 0) && (
+                <span className='fade-in absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white'>
+                  {totalItemsInCart}
+                </span>
+              )
+            }
+
           </div>
           <IoCartOutline className='w-5 h5' />
         </Link>

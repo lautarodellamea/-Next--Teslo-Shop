@@ -6,6 +6,7 @@ import { SizeSelector } from '../../../../components/product/size-selector/SizeS
 import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, StockLabel } from "@/components";
 import { getProductBySlug } from "@/actions";
 import { Metadata, ResolvingMetadata } from "next";
+import { AddToCart } from "./ui/AddToCart";
 
 
 
@@ -81,14 +82,7 @@ export default async function ProductBySlugPage({ params }: Props) {
         </h1>
         <p className="text-lg mb-5">{product.price}</p>
 
-        {/* Selector de tallas */}
-        <SizeSelector selectedSize={product.sizes[0]} availableSizes={product.sizes} />
-
-        {/* Selector de cantidad */}
-        <QuantitySelector quantity={2} />
-
-        {/* Boton */}
-        <button className="btn-primary my-5">Agregar al carrito</button>
+        <AddToCart product={product} />
 
         {/* Descripcion */}
         <h3 className="font-bold text-sm">Descripción</h3>
